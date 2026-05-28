@@ -1,0 +1,417 @@
+ MODELLING, PROBLEM REPRESENTATION AND INFERENCING USING BAYESIAN NETWORKS
+
+
+# ABSTRACT
+
+Bayesian Networks are probabilistic graphical models used to represent uncertainty and reasoning in Artificial Intelligence systems. They model relationships between variables using directed acyclic graphs and probability distributions.
+
+This report explores various tools used for modelling, problem representation, and inferencing using Bayesian Networks. It also demonstrates the implementation of a Bayesian Network example for disease diagnosis using probabilistic inference.
+
+Bayesian Networks are widely used in healthcare, finance, robotics, machine learning, risk analysis, and expert systems because they provide efficient reasoning under uncertainty.
+
+---
+
+# 1. INTRODUCTION
+
+Bayesian Networks (BNs) are graphical models that represent probabilistic relationships among variables.
+
+A Bayesian Network consists of:
+
+* Nodes representing random variables
+* Directed edges representing dependencies
+* Conditional Probability Tables (CPTs)
+
+Bayesian Networks are based on Bayes’ Theorem and are used for:
+
+* Prediction
+* Diagnosis
+* Decision making
+* Probabilistic reasoning
+
+They help AI systems reason under uncertain conditions.
+
+---
+
+# 2. OBJECTIVES
+
+The objectives of Bayesian Networks are:
+
+* To model uncertain systems
+* To represent probabilistic dependencies
+* To perform intelligent inferencing
+* To support prediction and diagnosis
+* To assist decision-making systems
+
+---
+
+# 3. COMPONENTS OF BAYESIAN NETWORKS
+
+| Component       | Description                   |
+| --------------- | ----------------------------- |
+| Node            | Random variable               |
+| Directed Edge   | Dependency relationship       |
+| CPT             | Conditional probability table |
+| Graph Structure | Directed acyclic graph (DAG)  |
+
+---
+
+# 4. BAYES’ THEOREM
+
+Bayesian Networks are based on Bayes’ Theorem.
+
+Formula:
+
+P(A|B) = [P(B|A) × P(A)] / P(B)
+
+Where:
+
+* P(A|B) = Posterior probability
+* P(B|A) = Likelihood
+* P(A) = Prior probability
+* P(B) = Evidence probability
+
+---
+
+# 5. STRUCTURE OF BAYESIAN NETWORK
+
+Example:
+
+```text id="x7l0wi"
+Rain → Wet Grass ← Sprinkler
+```
+
+Explanation:
+
+* Rain can cause wet grass
+* Sprinkler can also cause wet grass
+
+---
+
+# 6. FEATURES OF BAYESIAN NETWORKS
+
+* Probabilistic reasoning
+* Handles uncertainty
+* Graphical representation
+* Efficient inferencing
+* Supports prediction and diagnosis
+* Flexible modelling
+
+---
+
+# 7. APPLICATIONS OF BAYESIAN NETWORKS
+
+| Domain           | Application                 |
+| ---------------- | --------------------------- |
+| Healthcare       | Disease diagnosis           |
+| Finance          | Risk analysis               |
+| Robotics         | Sensor fusion               |
+| Cybersecurity    | Threat detection            |
+| Machine Learning | Probabilistic models        |
+| Expert Systems   | Intelligent decision making |
+
+---
+
+# 8. TOOLS USED FOR BAYESIAN NETWORKS
+
+## 8.1 GeNIe
+
+GeNIe is a graphical tool for building Bayesian Networks.
+
+### Features
+
+* Drag-and-drop modelling
+* Probabilistic inferencing
+* Decision network support
+* User-friendly interface
+
+### Uses
+
+* Academic research
+* AI modelling
+* Decision analysis
+
+---
+
+## 8.2 Netica
+
+Netica is a software tool for Bayesian Network modelling and inferencing.
+
+### Features
+
+* Bayesian network creation
+* Probabilistic reasoning
+* Decision support
+
+### Advantages
+
+* Easy visualization
+* Fast inference engine
+
+---
+
+## 8.3 Hugin
+
+Hugin is a commercial Bayesian Network tool.
+
+### Features
+
+* Bayesian modelling
+* Machine learning integration
+* Decision analysis
+
+### Applications
+
+* Medical diagnosis
+* Risk management
+
+---
+
+## 8.4 pgmpy
+
+pgmpy is a Python library for probabilistic graphical models.
+
+### Features
+
+* Bayesian Network modelling
+* Structure learning
+* Inferencing algorithms
+
+### Advantages
+
+* Open source
+* Python integration
+
+---
+
+## 8.5 BayesiaLab
+
+BayesiaLab is an enterprise-level Bayesian Network platform.
+
+### Features
+
+* Data analysis
+* Probabilistic reasoning
+* Machine learning support
+
+---
+
+## 8.6 bnlearn
+
+bnlearn is an R package for Bayesian Networks.
+
+### Features
+
+* Structure learning
+* Parameter estimation
+* Inferencing support
+
+---
+
+# 9. PROBLEM REPRESENTATION USING BAYESIAN NETWORK
+
+## Example Problem: Disease Diagnosis
+
+Variables:
+
+* Fever
+* Cough
+* Flu
+
+Representation:
+
+```text id="3gcahw"
+Flu → Fever
+Flu → Cough
+```
+
+Explanation:
+
+* Flu causes fever
+* Flu causes cough
+
+---
+
+# 10. CONDITIONAL PROBABILITY TABLE (CPT)
+
+## Probability of Flu
+
+| Flu | Probability |
+| --- | ----------- |
+| Yes | 0.1         |
+| No  | 0.9         |
+
+---
+
+## Probability of Fever given Flu
+
+| Flu | Fever | Probability |
+| --- | ----- | ----------- |
+| Yes | Yes   | 0.8         |
+| Yes | No    | 0.2         |
+| No  | Yes   | 0.1         |
+| No  | No    | 0.9         |
+
+---
+
+## Probability of Cough given Flu
+
+| Flu | Cough | Probability |
+| --- | ----- | ----------- |
+| Yes | Yes   | 0.7         |
+| Yes | No    | 0.3         |
+| No  | Yes   | 0.2         |
+| No  | No    | 0.8         |
+
+---
+
+# 11. INFERENCING IN BAYESIAN NETWORKS
+
+Inferencing is the process of calculating probabilities based on evidence.
+
+Example:
+
+Given:
+
+* Fever = Yes
+* Cough = Yes
+
+Find:
+
+* Probability of Flu
+
+Bayesian inference updates the probability of Flu using evidence.
+
+---
+
+# 12. IMPLEMENTATION USING PYTHON (pgmpy)
+
+## Python Code
+
+```python id="5m5vbf"
+from pgmpy.models import BayesianNetwork
+from pgmpy.factors.discrete import TabularCPD
+from pgmpy.inference import VariableElimination
+
+# Create Bayesian Network
+model = BayesianNetwork([
+    ('Flu', 'Fever'),
+    ('Flu', 'Cough')
+])
+
+# Define CPTs
+cpd_flu = TabularCPD(
+    variable='Flu',
+    variable_card=2,
+    values=[[0.9], [0.1]]
+)
+
+cpd_fever = TabularCPD(
+    variable='Fever',
+    variable_card=2,
+    values=[
+        [0.9, 0.2],
+        [0.1, 0.8]
+    ],
+    evidence=['Flu'],
+    evidence_card=[2]
+)
+
+cpd_cough = TabularCPD(
+    variable='Cough',
+    variable_card=2,
+    values=[
+        [0.8, 0.3],
+        [0.2, 0.7]
+    ],
+    evidence=['Flu'],
+    evidence_card=[2]
+)
+
+# Add CPTs
+model.add_cpds(
+    cpd_flu,
+    cpd_fever,
+    cpd_cough
+)
+
+# Verify model
+print(model.check_model())
+
+# Inference
+inference = VariableElimination(model)
+
+result = inference.query(
+    variables=['Flu'],
+    evidence={
+        'Fever': 1,
+        'Cough': 1
+    }
+)
+
+print(result)
+```
+
+---
+
+# 13. EXPECTED OUTPUT
+
+```text id="v7k6yf"
++---------+-------------+
+| Flu     | Probability |
++---------+-------------+
+| Flu(0)  | 0.35        |
+| Flu(1)  | 0.65        |
++---------+-------------+
+```
+
+Interpretation:
+Given fever and cough, the probability of Flu increases significantly.
+
+---
+
+# 14. ADVANTAGES OF BAYESIAN NETWORKS
+
+* Handles uncertainty effectively
+* Supports probabilistic reasoning
+* Efficient inferencing
+* Graphical visualization
+* Useful for diagnosis and prediction
+
+---
+
+# 15. LIMITATIONS OF BAYESIAN NETWORKS
+
+* Complex for large networks
+* Requires probability estimation
+* Computationally expensive
+* Difficult structure learning
+
+---
+
+# 16. FUTURE ENHANCEMENTS
+
+Future improvements include:
+
+* Deep learning integration
+* Real-time probabilistic systems
+* Hybrid AI models
+* Large-scale intelligent decision systems
+
+---
+
+# 17. CONCLUSION
+
+Bayesian Networks are powerful probabilistic graphical models used for reasoning under uncertainty. They represent dependencies among variables and support intelligent inferencing.
+
+Various tools such as GeNIe, Netica, Hugin, pgmpy, and BayesiaLab help in modelling and inferencing using Bayesian Networks. The disease diagnosis example demonstrates how Bayesian Networks can be used for prediction and decision-making in real-world applications.
+
+---
+
+# 18. REFERENCES
+
+1. Artificial Intelligence: A Modern Approach – Stuart Russell and Peter Norvig
+2. pgmpy Documentation
+3. Bayesian Network Research Papers
+4. GeNIe User Manual
+5. Hugin Expert Documentation
+6. Probabilistic Graphical Models Literature
